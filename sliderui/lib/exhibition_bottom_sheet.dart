@@ -193,21 +193,22 @@ class ExpandedEventItem extends StatelessWidget {
             color: Colors.white,
           ),
           padding: EdgeInsets.only(left: height).add(EdgeInsets.all(8)),
-          child: _buildContent(),
+          child: _buildContent(context),
         ),
       ),
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Column(
       children: <Widget>[
         Align(
+          
           alignment: Alignment.topLeft,
           child: Text(title, style: TextStyle(fontSize: 20),),
         ),
         
-        SizedBox(height: 8),
+        //SizedBox(height: 8),
         Row(
           children: <Widget>[
             // Text(
@@ -219,15 +220,19 @@ class ExpandedEventItem extends StatelessWidget {
             //   ),
             // ),
             SizedBox(width: 8),
-            Align(
-              alignment: Alignment.topLeft,
-                          child: Text(
-                date,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: Colors.grey[500],
+            Container(
+              width: MediaQuery.of(context).size.width/2.5,
+                          child: Align(
+                alignment: Alignment.topLeft,
+                            child: Text(
+                  date,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    color: Colors.grey[500],
+                  ),
                 ),
               ),
             ),
@@ -250,14 +255,15 @@ class ExpandedEventItem extends StatelessWidget {
 
 final List<Event> events = [
   Event('message.png', 'Message+', 'use it to chat.'),
-  Event('ask.jpg', 'Ask+', 'Ask me out please'),
-  Event('connect.jpeg', 'Connect+', 'Connect with others.'),
-  Event('date.png','Date+','use it to find a date'),
+  Event('ask.png', 'Ask', 'Ask me out please'),
+  // Event('connect.jpeg', 'Connect', 'Connect with others.'),
+  Event('date.png','Date','use it to find a date'),
+  // Event('date.png','Date+','use it to find a date'),
   Event('portfolio.png','Portfolio+','used to find portfolio'),
-  Event('discover.png','Discover','used to discover matters'),
-  Event('shop.png','Shop','used to shop'),
-  Event('mail.png','Mail','use it to send mail'),
-  Event('learn.png','Learn','learn anything from here'),
+  // Event('discover.png','Discover','used to discover matters'),
+  // Event('shop.png','Shop','used to shop'), // dont
+  // Event('mail.png','Mail','use it to send mail'),
+  // Event('learn.png','Learn','learn anything from here'),
 ];
 
 class Event {

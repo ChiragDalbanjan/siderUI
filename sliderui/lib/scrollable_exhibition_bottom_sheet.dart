@@ -31,62 +31,64 @@ class _ScrollableExhibitionSheetState extends State<ScrollableExhibitionSheet> {
               }
               double scaledPercentage =
                   (percentage - initialPercentage) / (1 - initialPercentage);
-              return Container(
-                padding: const EdgeInsets.only(left: 32),
-                decoration: const BoxDecoration(
-                  color: Color(0xFF162A49),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Opacity(
-                      opacity: percentage == 1 ? 1 : 0,
-                      child: ListView.builder(
-                        padding: EdgeInsets.only(right: 32, top: 128),
-                        controller: scrollController,
-                        itemCount: 20,
-                        itemBuilder: (context, index) {
-                          Event event = events[index % 3];
-                          return MyEventItem(
-                            event: event,
-                            percentageCompleted: percentage,
-                          );
-                        },
-                      ),
-                    ),
-                    ...events.map((event) {
-                      int index = events.indexOf(event);
-                      int heightPerElement = 120 + 8 + 8;
-                      double widthPerElement =
-                          40 + percentage * 80 + 8 * (1 - percentage);
-                      double leftOffset = widthPerElement *
-                          (index > 4 ? index + 2 : index) *
-                          (1 - scaledPercentage);
-                      return Positioned(
-                        top: 44.0 +
-                            scaledPercentage * (128 - 44) +
-                            index * heightPerElement * scaledPercentage,
-                        left: leftOffset,
-                        right: 32 - leftOffset,
-                        child: IgnorePointer(
-                          ignoring: true,
-                          child: Opacity(
-                            opacity: percentage == 1 ? 0 : 1,
-                            child: MyEventItem(
+              return SingleChildScrollView(
+                              child: Container(
+                  padding: const EdgeInsets.only(left: 32),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF162A49),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Opacity(
+                        opacity: percentage == 1 ? 1 : 0,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(right: 32, top: 128),
+                          controller: scrollController,
+                          itemCount: 20,
+                          itemBuilder: (context, index) {
+                            Event event = events[index % 3];
+                            return MyEventItem(
                               event: event,
                               percentageCompleted: percentage,
+                            );
+                          },
+                        ),
+                      ),
+                      ...events.map((event) {
+                        int index = events.indexOf(event);
+                        int heightPerElement = 120 + 8 + 8;
+                        double widthPerElement =
+                            40 + percentage * 80 + 8 * (1 - percentage);
+                        double leftOffset = widthPerElement *
+                            (index > 4 ? index + 2 : index) *
+                            (1 - scaledPercentage);
+                        return Positioned(
+                          top: 44.0 +
+                              scaledPercentage * (128 - 44) +
+                              index * heightPerElement * scaledPercentage,
+                          left: leftOffset,
+                          right: 32 - leftOffset,
+                          child: IgnorePointer(
+                            ignoring: true,
+                            child: Opacity(
+                              opacity: percentage == 1 ? 0 : 1,
+                              child: MyEventItem(
+                                event: event,
+                                percentageCompleted: percentage,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-                    SheetHeader(
-                      fontSize: 14 + percentage * 8,
-                      topMargin:
-                          16 + percentage * MediaQuery.of(context).padding.top,
-                    ),
-                    
-                  ],
+                        );
+                      }),
+                      SheetHeader(
+                        fontSize: 14 + percentage * 8,
+                        topMargin:
+                            16 + percentage * MediaQuery.of(context).padding.top,
+                      ),
+                      
+                    ],
+                  ),
                 ),
               );
             },

@@ -250,16 +250,14 @@ class ExpandedEventItem extends StatelessWidget {
 
 final List<Event> events = [
   Event('message.png', 'Message+', 'use it to chat.'),
-  Event('ask.jpg', 'Ask', 'Ask me out please'),
-  Event('connect.jpeg', 'Connect', 'Connect with others.'),
-  Event('date.png','Date','use it to find a date'),
-  Event('','',''),
-  Event('','',''),
-  Event('','',''),
-  Event('','',''),
-  Event('','',''),
-  Event('','',''),
-  Event('','',''),
+  Event('ask.jpg', 'Ask+', 'Ask me out please'),
+  Event('connect.jpeg', 'Connect+', 'Connect with others.'),
+  Event('date.png','Date+','use it to find a date'),
+  Event('portfolio.png','Portfolio+','used to find portfolio'),
+  Event('discover.png','Discover','used to discover matters'),
+  Event('shop.png','Shop','used to shop'),
+  Event('mail.png','Mail','use it to send mail'),
+  Event('learn.png','Learn','learn anything from here'),
 ];
 
 class Event {
